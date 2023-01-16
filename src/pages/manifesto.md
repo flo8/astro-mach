@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/layout.astro
+layout: ../layouts/layout.astro
 title: Manifesto
 author: Flo
 ---
