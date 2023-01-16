@@ -63,8 +63,4 @@ const config = {
   darkMode: 'class',
 };
 
-module.exports = {
-  mode: 'jit',
-  purge: ['./src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}'],
-  content: ['./node_modules/flowbite/**/*.js'],
-};
+module.exports = config;
