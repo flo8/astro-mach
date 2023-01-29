@@ -2,8 +2,15 @@
 import Footer from "../components/Footer.astro";
 import Navigation from "../components/Header.astro";
 import Paginator from "/src/components/courses/Paginator.astro"
----
+const slug = Astro.url.pathname;
+const posts = await Astro.glob('./*.md'); // returns an array of posts that live at ./src/pages/post/*.md
 
+//const posts = await Astro.glob("../pages/*.md");
+
+const selfIndex = posts.findIndex((post) => post.url === slug.slice(0, -1));
+const nextSlug = posts?.[selfIndex + 1]?.url;
+const prevSlug = posts?.[selfIndex - 1]?.url;
+---
 
 <html lang="en">
     <head>
@@ -23,6 +30,12 @@ import Paginator from "/src/components/courses/Paginator.astro"
         </slot>
 
         <Paginator page={page}/>
+
+          {posts.map(({ url }) => <a href={url}>{url}</a>)}
+  <nav>
+    <a href={prevSlug} style={prevSlug ?? `cursor: not-allowed`}>Prev</a>
+    <a href={nextSlug} style={nextSlug ?? `cursor: not-allowed`}>Next</a>
+  </nav>
 
 <Footer></Footer>
 
